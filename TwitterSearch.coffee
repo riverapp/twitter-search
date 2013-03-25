@@ -127,20 +127,18 @@ class Twitter
   # if it is.
   parseStatuses: (rawStatuses) ->
     statuses = []
-    rawStatuses = JSON.parse(rawStatuses).statuses
+    rawStatuses = JSON.parse rawStatuses
     for s in rawStatuses
-      status = new StatusUpdate()
+      status = new Status()
       if s.retweeted_status
         status.text = s.retweeted_status.text
-        status.origin = s.retweeted_status.user.name
-        status.originID = '@' + s.retweeted_status.user.screen_name
-        status.originImageURL = @avatar_url + s.retweeted_status.user.screen_name
+        status.creator = "<b>" + s.retweeted_status.user.name + "</b>" + s.retweeted_status.user.screen_name
+        status.creatorImageURL = @avatar_url + s.retweeted_status.user.screen_name
         status.detailText = '↳ Retweeted by ' + s.user.name
       else
         status.text = s.text
-        status.origin = s.user.name
-        status.originID = '@' + s.user.screen_name
-        status.originImageURL = @avatar_url + s.user.screen_name
+        status.creator = "<b>" + s.user.name + "</b>" + s.user.screen_name
+        status.creatorImageURL = @avatar_url + s.user.screen_name
       status.createdDate = parseInt(new Date(s.created_at) / 1000)
       status.id = s.id.toString()
       statuses.push status
