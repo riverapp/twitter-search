@@ -161,7 +161,7 @@ class Twitter
   settings: (user, callback) ->
     callback [
       {
-        "name": "Search",
+        "label": "Search",
         "type": "text",
         "identifier": "query",
         "placeholder": "@justinbieber, #ff"
