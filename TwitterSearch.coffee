@@ -132,12 +132,12 @@ class Twitter
       status = new Status()
       if s.retweeted_status
         status.text = s.retweeted_status.text
-        status.creator = "<b>" + s.retweeted_status.user.name + "</b>" + s.retweeted_status.user.screen_name
+        status.creator = "<b>" + s.retweeted_status.user.name + "</b> @" + s.retweeted_status.user.screen_name
         status.creatorImageURL = @avatar_url + s.retweeted_status.user.screen_name
         status.detailText = '↳ Retweeted by ' + s.user.name
       else
         status.text = s.text
-        status.creator = "<b>" + s.user.name + "</b>" + s.user.screen_name
+        status.creator = "<b>" + s.user.name + "</b> @" + s.user.screen_name
         status.creatorImageURL = @avatar_url + s.user.screen_name
       status.createdDate = parseInt(new Date(s.created_at) / 1000)
       status.id = s.id.toString()
